@@ -91,18 +91,21 @@ const styles = StyleSheet.create({
         paddingTop: 15,
     },
     input: {
-        borderBottomWidth: 2,
+        borderBottomWidth: 3,
         borderBottomColor: colors.PRIMARY,
         fontSize: 20,
         color: colors.DARK,
     },
     title: {
         height: 40,
+        marginTop: 15,
         marginBottom: 15,
-        fontWeight: 'bold',
+        fontWeight: '900',
+        color: 'black',
     },
     desc: {
         height: 100,
+        fontWeight: '900',
     },
     modalBG: {
         flex: 1,

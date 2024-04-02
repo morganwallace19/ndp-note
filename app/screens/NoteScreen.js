@@ -26,6 +26,8 @@ const reverseData = data => {
 };
 
 const NoteScreen = ({ user, navigation }) => {
+
+    const { navigate } = useNavigation();
     
     // new to display location
     const [location, setLocation] = useState(null);
@@ -113,14 +115,18 @@ const NoteScreen = ({ user, navigation }) => {
     };
 
     // Sign out
-    const handleSignOut = async () => {
-        try {
-            await AsyncStorage.removeItem('userToken');
-            navigation.navigate('intro');
-        } catch (error) {
-            console.error('Error signing out:', error);
-        }
-    };
+    // const GoBackToIntro = async () => {
+    //     try {
+    //         await AsyncStorage.removeItem('user');
+    //         navigation.navigate('intro');
+    //     } catch (error) {
+    //         console.error('Error navigating back:', error);
+    //     }
+    // };
+
+    const handleNavigateToIntro = () => {
+        navigate('intro');
+    }
 
     // new code
     const CameraNavigate = () => {
@@ -188,8 +194,8 @@ const NoteScreen = ({ user, navigation }) => {
 
     <Button title='Show Location' onPress={handleLocation} />
     <Button title='Take Photo' onPress={CameraNavigate} />
-    <Button title="Sign Out" onPress={handleSignOut} />
-    <Button title="Sign Message" onPress={PhoneNavigate} />
+    <Button title="Send A Message" onPress={PhoneNavigate} />
+    <Button title='Go back to intro' onPress={handleNavigateToIntro} />
     </>
   );
 };
@@ -198,6 +204,7 @@ const styles = StyleSheet.create({
     header: {
         fontSize: 25,
         fontWeight: 'bold',
+        textAlign: 'center',
     },
     container: {
         paddingHorizontal: 20,

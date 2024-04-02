@@ -3,10 +3,11 @@ import { View, StyleSheet, Text, TextInput, StatusBar, Dimensions } from 'react-
 import colors from "../misc/colors";
 import RoundIconBtn from "../components/RoundIconBtn";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation } from '@react-navigation/native'
 
 const Intro = ({ onFinish }) => {
     // new
-    const navigation = useNavigation();
+   const navigation = useNavigation();
 
     const [name, setName] = useState('')
     const handleOnChangeText = (text) => setName(text);
@@ -39,7 +40,7 @@ const Intro = ({ onFinish }) => {
            {name.trim().length >= 3 ? ( 
             <>
            <RoundIconBtn antIconName='arrowright' onPress={handleSubmit} />
-           <RoundIconBtn antIconName='camerao' onPress={handleCameraPress} />
+           {/* <RoundIconBtn antIconName='camerao' onPress={handleCameraPress} /> */}
            </>
            ) : null}
         </View>

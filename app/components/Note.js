@@ -24,9 +24,9 @@ const styles = StyleSheet.create({
         borderRadius: 10,
     },
     title: {
-        fontWeight: 'bold',
-        fontSize: 16,
-        color: colors.LIGHT,
+        fontWeight: '900',
+        fontSize: 20,
+        color: colors.PRIMARY,
     },
 });
 

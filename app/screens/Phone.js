@@ -59,14 +59,16 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         margin: 10,
+        textAlign: 'center'
     },
     input: {
         width: 300,
-        height: 90,
-        borderColor: 'gray',
-        borderWidth: 1,
-        margin: 10,
+        height: 100,
+        borderColor: 'black',
+        borderWidth: 2,
+        margin: 40,
         padding: 10
+        
     }
 });
 

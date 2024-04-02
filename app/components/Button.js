@@ -2,6 +2,8 @@ import * as React from 'react';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Entypo } from '@expo/vector-icons'
 
+
+// Function for the Button
 export default function Button({
     title,
     onPress,
@@ -22,6 +24,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
+        marginLeft: 10,
     },
     text: {
         fontWeight: 'bold',

@@ -121,6 +121,7 @@ const styles = StyleSheet.create({
     container: {
         // flex: 1,
         paddingHorizontal: 15,
+        marginTop: 25,
     },
     title: {
         fontSize: 30,
@@ -129,6 +130,7 @@ const styles = StyleSheet.create({
     },
     desc: {
         fontSize: 20,
+        marginTop: 5,
         opacity: 0.6
     },
     time: {

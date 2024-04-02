@@ -10,7 +10,6 @@ import NoteProvider from './app/contexts/NoteProvider';
 
 import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
-import Camera from './app/screens/CameraClass';
 import CameraClass from './app/screens/CameraClass';
 import Phone from './app/screens/Phone';
 
@@ -41,14 +40,14 @@ export default function App() {
   return (
     <NavigationContainer>
       <NoteProvider>
-        <Stack.Navigator
+        <Stack.Navigator initialRouteName='NoteScreen'
         screenOptions={{ headerTitle: '', headerTransparent: true }}
         >
           <Stack.Screen component={RenderNoteScreen} name='NoteScreen' />
           <Stack.Screen component={NoteDetail} name='NoteDetail' />
           <Stack.Screen component={CameraClass} name='Camera' />
           <Stack.Screen component={Phone} name='Phone' />
-          
+          <Stack.Screen component={Intro} name='intro' />
         </Stack.Navigator>
       </NoteProvider>
     </NavigationContainer>
