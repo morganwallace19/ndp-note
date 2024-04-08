@@ -4,10 +4,12 @@ import * as SMS from 'expo-sms'
 import { useState } from 'react';
 
 const Phone = () => {
-    // new code
+
+    // useState hooks
     const [number, setNumber] = useState('');
     const [message, setMessage] = useState('');
 
+    // function to check device SMS availability
     const checkSMS = async () => {
         const isAvailable = await SMS.isAvailableAsync();
 
@@ -18,6 +20,7 @@ const Phone = () => {
         }
     };
 
+    // function to send the message
     const sendSMS = async () => {
         const { result } = await SMS.sendSMSAsync(number, message);
         if (result === 'sent') {

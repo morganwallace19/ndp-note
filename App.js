@@ -13,12 +13,18 @@ import { NavigationContainer } from '@react-navigation/native'
 import CameraClass from './app/screens/CameraClass';
 import Phone from './app/screens/Phone';
 
+// Initializing the stack navigator
 const Stack = createStackNavigator();
 
+// start of App
 export default function App() {
+
+  // useState hooks are used to initialze user as empty and 
+  // isAppFirstTimeOpen as false
   const [user, setUser] = useState({ });
   const [isAppFirstTimeOpen, setIsAppFirstTimeOpen] = useState(false);
 
+  // user data is retrieved by using AsyncStorage
   const findUser = async () => {
     const result = await AsyncStorage.getItem('user')
 
@@ -26,15 +32,17 @@ export default function App() {
 
     setUser(JSON.parse(result));
     setIsAppFirstTimeOpen(false);
-//    console.log(result)
   };
 
+  // useEffect hook calls findUser function
   useEffect(() => {
     findUser()
   }, []);
 
+  // The function to render NoteScreen component
   const RenderNoteScreen = props => <NoteScreen {...props} user={user} />;
 
+  // If statement
   if (isAppFirstTimeOpen) return <Intro onFinish={findUser} />;
 
   return (

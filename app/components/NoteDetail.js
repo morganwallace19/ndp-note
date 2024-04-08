@@ -20,6 +20,8 @@ const formatDate = ms => {
     return `${day}/${month}/${year} - ${hrs}:${min}:${sec}`;
 };
 
+//
+
 const NoteDetail = props => {
     const [note, setNote] = useState(props.route.params.note);
     const headerHeight = useHeaderHeight;
@@ -37,6 +39,8 @@ const NoteDetail = props => {
         await AsyncStorage.setItem('notes', JSON.stringify(newNotes));
         props.navigation.goBack();
     };
+
+    //
 
     const displayDeleteAlert = () => {
         Alert.alert(
@@ -57,6 +61,8 @@ const NoteDetail = props => {
             }
         );
     };
+
+    //
 
     const handleUpdate = async (title, desc, time) => {
         const result = await AsyncStorage.getItem('notes');
@@ -84,6 +90,8 @@ const NoteDetail = props => {
         setIsEdit(true);
         setShowModal(true);
     };
+
+    //
 
     return (
         <>

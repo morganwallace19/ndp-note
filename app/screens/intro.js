@@ -5,26 +5,21 @@ import RoundIconBtn from "../components/RoundIconBtn";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from '@react-navigation/native'
 
+// Intro component
 const Intro = ({ onFinish }) => {
-    // new
+
    const navigation = useNavigation();
 
+   // useState hook manages user's name
     const [name, setName] = useState('')
     const handleOnChangeText = (text) => setName(text);
    
-   
+   // User submits entered name
     const handleSubmit = async () => {
         const user = { name: name}
         await AsyncStorage.setItem('user', JSON.stringify(user));
         if (onFinish) onFinish();
     };
-
-    // new
-    const handleCameraPress = () => {
-        navigation.navigate('Camera')
-    }
-
-    //console.log(user);
 
     return (
         <>
@@ -40,7 +35,6 @@ const Intro = ({ onFinish }) => {
            {name.trim().length >= 3 ? ( 
             <>
            <RoundIconBtn antIconName='arrowright' onPress={handleSubmit} />
-           {/* <RoundIconBtn antIconName='camerao' onPress={handleCameraPress} /> */}
            </>
            ) : null}
         </View>
@@ -49,7 +43,6 @@ const Intro = ({ onFinish }) => {
 }
 
 const width = Dimensions.get('window').width - 50;
-//console.log(width)
 
     const styles = StyleSheet.create({
         container:{

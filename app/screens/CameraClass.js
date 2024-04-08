@@ -7,12 +7,15 @@ import { MaterialIcons } from '@expo/vector-icons'
 
 
 const CameraClass = () => {
+
+// useState hooks for state variables
 const [hasCameraPermission, setHasCameraPermission] = useState(null);
 const [image, setImage] = useState(null);
 const [type, setType] = useState(Camera.Constants.Type.back);
 const [flash, setFlash] = useState(Camera.Constants.FlashMode.off);
 const cameraRef = useRef(null);
 
+// useEffect hook for camera permissions
 useEffect(() => {
     (async () => {
         MediaLibrary.requestPermissionsAsync();
@@ -21,6 +24,10 @@ useEffect(() => {
     })();
 }, [])
 
+
+// 
+
+// function to take a picture
 const takePicture = async () => {
     if(cameraRef) {
         try {
@@ -32,6 +39,8 @@ const takePicture = async () => {
         }
     }
 }
+
+// function to save the image
 const saveImage = async() => {
     if(image) {
         try {
@@ -44,6 +53,7 @@ const saveImage = async() => {
     }
 }
 
+// Camera permissions denied
 if(hasCameraPermission === false) {
     return <Text>No access to camera</Text>
 }

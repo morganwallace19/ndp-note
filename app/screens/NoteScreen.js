@@ -11,10 +11,10 @@ import SearchBar from '../components/SearchBar'
 import { useNotes } from '../contexts/NoteProvider'
 import { useNavigation } from '@react-navigation/native'
 
-// new
+// Import expo-location for geolocation
 import { requestForegroundPermissionsAsync, getCurrentPositionAsync } from 'expo-location'
 
-
+// function for sorting array data in reverse order
 const reverseData = data => {
     return data.sort((a, b) => {
         const aInt = parseInt(a.time);
@@ -25,17 +25,20 @@ const reverseData = data => {
     });
 };
 
+// Note screen
 const NoteScreen = ({ user, navigation }) => {
 
     const { navigate } = useNavigation();
     
-    // new to display location
+    // useState hook to display location
     const [location, setLocation] = useState(null);
 
+    // useEffect hook
     useEffect(() => {
         getLocationAsync();
     }, []);
 
+    // expo-library used to request location permissions
     const getLocationAsync = async () => {
         const { status } = await requestForegroundPermissionsAsync();
         if (status !== 'granted') {
@@ -55,6 +58,9 @@ const NoteScreen = ({ user, navigation }) => {
         }
     };
 
+    //
+
+    // useState hooks
     const [greet, setGreet] = useState('');
     const [modalVisible, setModalVisible] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
@@ -68,15 +74,16 @@ const NoteScreen = ({ user, navigation }) => {
         if(hrs === 0 || hrs < 12) return setGreet('Morning');
         if(hrs === 1 || hrs < 17) return setGreet('Afternoon');
         setGreet('Evening');
-   //     console.log(hrs)
     };
 
     useEffect(() => {
         findGreet();
     }, []);
 
+    //  notes array sorted in reverse order
     const reverseNotes = reverseData(notes);
 
+    // note submission
     const handleOnSubmit = async (title, desc) => {
         const note = { id: Date.now(), title, desc, time: Date.now() };
         const updatedNotes = [...notes, note];
@@ -84,10 +91,15 @@ const NoteScreen = ({ user, navigation }) => {
         await AsyncStorage.setItem('notes', JSON.stringify(updatedNotes));
     };
 
+
+    //
+
+    // function for navigating a note object
     const openNote = note => {
         navigation.navigate('NoteDetail', { note });
     };
 
+    // function triggered when search bar has input
     const handleOnSearchInput = async text => {
         setSearchQuery(text);
         if (!text.trim()) {
@@ -108,30 +120,24 @@ const NoteScreen = ({ user, navigation }) => {
         }
     };
 
+    // function called when user clears search input
     const handleOnClear = async () => {
         setSearchQuery('');
         setResultNotFound(false);
         await findNotes();
     };
 
-    // Sign out
-    // const GoBackToIntro = async () => {
-    //     try {
-    //         await AsyncStorage.removeItem('user');
-    //         navigation.navigate('intro');
-    //     } catch (error) {
-    //         console.error('Error navigating back:', error);
-    //     }
-    // };
-
+    // function for navigating to intro
     const handleNavigateToIntro = () => {
         navigate('intro');
     }
 
-    // new code
+    // function for navigating to camera
     const CameraNavigate = () => {
         navigation.navigate('Camera');
     };
+
+    // function for navigating to SMS
     const PhoneNavigate = () => {
         navigation.navigate('Phone');
     };

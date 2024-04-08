@@ -22,6 +22,8 @@ const NoteInputModal = ({ visible, onClose, onSubmit, note, isEdit }) => {
         if (valueFor === 'desc') setDesc(text);
     };
 
+    //
+
     const handleSubmit = () => {
         if (!title.trim() && !desc.trim()) return onClose();
 
@@ -42,6 +44,8 @@ const NoteInputModal = ({ visible, onClose, onSubmit, note, isEdit }) => {
         }
         onClose();
     };
+
+    //
 
     return (
         <>
